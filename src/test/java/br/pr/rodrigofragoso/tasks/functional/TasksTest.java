@@ -7,11 +7,15 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TasksTest {
 	public WebDriver acessarAplicacao() {
 		System.setProperty("webdriver.chrome.driver", "./lib/chromedriver");
-		WebDriver driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+                options.addArguments("--no-sandbox");
+       		options.addArguments("--disable-dev-shm-usage");
+		WebDriver driver = new ChromeDriver(options);
 		driver.navigate().to("http://192.168.25.14:8001/tasks/");
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		return driver;
